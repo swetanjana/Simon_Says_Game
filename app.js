@@ -6,6 +6,7 @@ let best=0;
 let h3=document.querySelector("h3");
 let h2=document.querySelector("h2");
 let h4=document.querySelector("h4");
+let startbutton=document.querySelector("#startbutton");
 let btns=["yellow","red","green","blue"];
 const soundMap = {
     red: new Audio("button-305770.mp3"),
@@ -14,7 +15,7 @@ const soundMap = {
     blue: new Audio("mixkit-select-click-1109.wav"),
     wrong: new Audio("wrong-buzzer-6268.mp3")
 };
-document.addEventListener("keypress",function(){
+startbutton.addEventListener("click",function(){
     if(started==false){
         console.log("game started");
         started=true;
@@ -53,8 +54,9 @@ function userflashUp(btn){
         }
     }
     else{
-        h2.innerText=`Game Over! and your score was ${lvl} press any key to start`;
+        h2.innerText=`Game Over! and your score was ${lvl} press start button to start again`;
         wrongbuttonsound();
+        flashwrong();
         highestscore();
         reset();
     }
@@ -100,4 +102,12 @@ function reset(){
 }
 function wrongbuttonsound(){
     soundMap["wrong"].play();
+}
+function flashwrong(){
+    startbutton.classList.remove("flash-wrong");
+    void startbutton.offsetWidth;
+    startbutton.classList.add("flash-wrong");
+        setTimeout(function(){
+        startbuttton.classList.remove("flash-wrong")
+        },250);
 }
